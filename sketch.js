@@ -23,10 +23,8 @@ function draw() {
   stroke('grey');
   
   for(var i = 0; i < boxes.length; ++i){
-    for(var j = 0; j < boxes.length; ++j){
-      if(i == j) continue;
-      line(boxes[i].x, boxes[i].y, boxes[j].x, boxes[j].y); 
-    }
+    var nxt = (i + 1)%boxes.length;
+    line(boxes[i].x, boxes[i].y, boxes[nxt].x, boxes[nxt].y); 
   }
   
   stroke('cyan');
