@@ -32,7 +32,7 @@ function Box(x, y, r){
     }
     
     strokeWeight(2);
-    stroke(255);
+    stroke('white');
     fill('white');
     textSize(25);
     text(this.txt, this.x - textWidth(this.txt)/2 , this.y + 10);
