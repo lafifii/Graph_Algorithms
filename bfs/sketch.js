@@ -2,7 +2,7 @@ var bfs;
 var ops = [];
 
 function setup() {
-  
+
   bfs = new BFS(0, 30, 0, 0, 0);
   textFont('Oswald', 20);
   create_interaction();
@@ -15,35 +15,38 @@ function draw() {
 }
 
 function create_interaction(){
-  
+
   // edge to add
-  ops.push(new Option('add edge', 2));
+  ops.push(new Option(['add edge'], 2));
   ops[0].button.mousePressed(add_edge);
-  
+
   // edge to delete
-  ops.push(new Option('delete edge', 2));
+  ops.push(new Option(['delete edge'], 2));
   ops[1].button.mousePressed(delete_edge);
-    
+
   // change n
-  ops.push(new Option('change N', 1));
+  ops.push(new Option(['change N'], 1));
   ops[2].button.mousePressed(change_n);
-  
+
   // random graph
-  ops.push(new Option('random graph', 0));
+  ops.push(new Option(['random graph'], 0));
   ops[3].button.mousePressed(create_random);
 
   // add start
-  ops.push(new Option('add start', 1));
+  ops.push(new Option(['add start'], 1));
   ops[4].button.mousePressed(add_start);
-  
+
   // run bfs
-  ops.push(new Option('run BFS', 0));
+  ops.push(new Option(['run BFS'], 0));
   ops[5].button.mousePressed(cal_bfs);
 
   // restart
-  ops.push(new Option('restart', 0));
+  ops.push(new Option(['restart'], 0));
   ops[6].button.mousePressed(restart);
-  
+
+  // show all or not
+  ops.push(new Option(['show all edges', 'show path'], 0));
+  ops[7].button.mousePressed(change_state);
 }
 
 function valid(input_val){
@@ -52,30 +55,30 @@ function valid(input_val){
 }
 
 function add_edge(){
-  
+
   var a = valid(ops[0].inputs[0].value());
   var b = valid(ops[0].inputs[1].value());
   var c = 0;
-  
+
   bfs.graph.add_edge(a, b, c);
   bfs.init_bfs();
 }
 
 function delete_edge(){
-  
+
   var a = valid(ops[1].inputs[0].value());
   var b = valid(ops[1].inputs[1].value());
-  
+
   bfs.graph.delete_edge(a, b);
   bfs.init_bfs();
 }
 
 function change_n(){
-  
+
   var a = valid(ops[2].inputs[0].value());
   bfs.graph.change_n(a);
   bfs.init_bfs();
-  
+
 }
 
 function create_random(){
@@ -94,4 +97,9 @@ function add_start(){
 
 function restart(){
   bfs.init_bfs();
+}
+
+function change_state(){
+  ops[7].change_text();
+  bfs.graph.show_all_edges();
 }

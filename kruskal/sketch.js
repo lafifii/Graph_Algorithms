@@ -1,9 +1,9 @@
-var dijkstra;
+var kruskal;
 var ops = [];
 
 function setup() {
 
-  dijkstra = new Dijkstra(0, 30, 0, 30, 1);
+  kruskal = new Kruskal(0, 30, -1000000, 30, 1);
   textFont('Oswald', 20);
   create_interaction();
   createCanvas(windowWidth,windowHeight);
@@ -11,7 +11,7 @@ function setup() {
 
 function draw() {
   background(0);
-  dijkstra.show();
+  kruskal.show();
 }
 
 function create_interaction(){
@@ -32,20 +32,20 @@ function create_interaction(){
   ops.push(new Option(['random graph'], 0));
   ops[3].button.mousePressed(create_random);
 
-  // add start dijkstra
-  ops.push(new Option(['add start'], 1));
-  ops[4].button.mousePressed(add_start);
+  // add start kruskal
+  ops.push(new Option(['fix edge'], 2));
+  ops[4].button.mousePressed(fix_edge);
 
-  // run dijkstra
-  ops.push(new Option(['run Dijkstra'], 0));
-  ops[5].button.mousePressed(cal_dijkstra);
+  // run kruskal
+  ops.push(new Option(['run Kruskal'], 0));
+  ops[5].button.mousePressed(cal_kruskal);
 
   // restart
   ops.push(new Option(['restart'], 0));
   ops[6].button.mousePressed(restart);
 
   // show all or not
-  ops.push(new Option(['show all edges', 'show path'], 0));
+  ops.push(new Option(['show all edges', 'show MST only'], 0));
   ops[7].button.mousePressed(change_state);
 }
 
@@ -60,8 +60,8 @@ function add_edge(){
   var b = valid(ops[0].inputs[1].value());
   var c = valid(ops[0].inputs[2].value());
 
-  dijkstra.graph.add_edge(a, b, c);
-  dijkstra.init_dijkstra();
+  kruskal.graph.add_edge(a, b, c);
+  kruskal.init_kruskal();
 }
 
 function delete_edge(){
@@ -69,37 +69,38 @@ function delete_edge(){
   var a = valid(ops[1].inputs[0].value());
   var b = valid(ops[1].inputs[1].value());
 
-  dijkstra.graph.delete_edge(a, b);
-  dijkstra.init_dijkstra();
+  kruskal.graph.delete_edge(a, b);
+  kruskal.init_kruskal();
 }
 
 function change_n(){
 
   var a = valid(ops[2].inputs[0].value());
-  dijkstra.graph.change_n(a);
-  dijkstra.init_dijkstra();
+  kruskal.graph.change_n(a);
+  kruskal.init_kruskal();
 
 }
 
 function create_random(){
-  dijkstra.graph.create_random();
-  dijkstra.init_dijkstra();
+  kruskal.graph.create_random();
+  kruskal.init_kruskal();
 }
 
-function cal_dijkstra(){
-  dijkstra.cal_dijkstra();
+function cal_kruskal(){
+  kruskal.cal_kruskal();
 }
 
-function add_start(){
+function fix_edge(){
   var a = valid(ops[4].inputs[0].value());
-  dijkstra.add_start(a);
+  var b = valid(ops[4].inputs[1].value());
+  kruskal.fix_edge(a, b);
 }
 
 function restart(){
-  dijkstra.init_dijkstra();
+  kruskal.init_kruskal();
 }
 
 function change_state(){
   ops[7].change_text();
-  dijkstra.graph.show_all_edges();
+  kruskal.graph.show_all_edges();
 }
