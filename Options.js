@@ -33,7 +33,7 @@ function Option(txt, n_input){
 
   this.change_text = function(){
     this.id = (this.id + 1)%this.txt.length;
-    this.button.text = this.txt[this.id];
+    this.button.html(this.txt[this.id]);
   }
 
 }

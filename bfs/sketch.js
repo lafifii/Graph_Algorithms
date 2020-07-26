@@ -45,7 +45,7 @@ function create_interaction(){
   ops[6].button.mousePressed(restart);
 
   // show all or not
-  ops.push(new Option(['show all edges', 'show path'], 0));
+  ops.push(new Option(['show path', 'show all edges'], 0));
   ops[7].button.mousePressed(change_state);
 }
 

@@ -88,7 +88,7 @@ function Kruskal(n, rd, w_min, w_max, show_w){
     text("Kruskal's Algorithm", 25, 40);
     textSize(20);
 
-    draw_box('cyan', "MST total: " + Math.round(this.cost_mst*10)/10, 40);
+    draw_box('cyan', "MST cost: " + Math.round(this.cost_mst*10)/10, 40);
 
     if(this.mst.length == 0 || mouseIsPressed){
 

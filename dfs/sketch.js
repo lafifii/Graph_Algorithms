@@ -41,7 +41,7 @@ function create_interaction(){
   ops[5].button.mousePressed(restart);
 
   // show all or not
-  ops.push(new Option(['show all edges', 'show forward edges'], 0));
+  ops.push(new Option([ 'show forward edges', 'show all edges'], 0));
   ops[6].button.mousePressed(change_state);
 }
 
