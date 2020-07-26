@@ -1,9 +1,9 @@
-var graph;
+var bfs;
 var ops = [];
 
 function setup() {
   
-  graph = new Graph(0, 30);
+  bfs = new BFS(0, 30, 0, 0, 0);
   textFont('Oswald', 20);
   create_interaction();
   createCanvas(windowWidth,windowHeight);
@@ -11,7 +11,7 @@ function setup() {
 
 function draw() {
   background(0);
-  graph.show();
+  bfs.show();
 }
 
 function create_interaction(){
@@ -31,8 +31,8 @@ function create_interaction(){
   // random graph
   ops.push(new Option('random graph', 0));
   ops[3].button.mousePressed(create_random);
-  
-  // add start bfs
+
+  // add start
   ops.push(new Option('add start', 1));
   ops[4].button.mousePressed(add_start);
   
@@ -46,48 +46,52 @@ function create_interaction(){
   
 }
 
-
 function valid(input_val){
   if(input_val == "" || isNaN(input_val)) return -1;
-  return parseInt(input_val);
+  return parseFloat(input_val);
 }
 
 function add_edge(){
   
   var a = valid(ops[0].inputs[0].value());
   var b = valid(ops[0].inputs[1].value());
- 
-  graph.add_edge(a, b);
+  var c = 0;
+  
+  bfs.graph.add_edge(a, b, c);
+  bfs.init_bfs();
 }
 
 function delete_edge(){
   
   var a = valid(ops[1].inputs[0].value());
   var b = valid(ops[1].inputs[1].value());
- 
-  graph.delete_edge(a, b);
+  
+  bfs.graph.delete_edge(a, b);
+  bfs.init_bfs();
 }
 
 function change_n(){
   
   var a = valid(ops[2].inputs[0].value());
-  graph.change_n(a);
+  bfs.graph.change_n(a);
+  bfs.init_bfs();
   
 }
 
 function create_random(){
-  graph.create_random();
+  bfs.graph.create_random();
+  bfs.init_bfs();
 }
 
 function cal_bfs(){
-  graph.cal_bfs();
+  bfs.cal_bfs();
 }
 
 function add_start(){
   var a = valid(ops[4].inputs[0].value());
-  graph.add_start(a);
+  bfs.add_start(a);
 }
 
 function restart(){
-  graph.init_bfs();
+  bfs.init_bfs();
 }

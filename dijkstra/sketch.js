@@ -1,9 +1,9 @@
-var graph;
+var dijkstra;
 var ops = [];
 
 function setup() {
   
-  graph = new Graph(0, 30);
+  dijkstra = new Dijkstra(0, 30, 0, 30, 1);
   textFont('Oswald', 20);
   create_interaction();
   createCanvas(windowWidth,windowHeight);
@@ -11,7 +11,7 @@ function setup() {
 
 function draw() {
   background(0);
-  graph.show();
+  dijkstra.show();
 }
 
 function create_interaction(){
@@ -46,7 +46,6 @@ function create_interaction(){
   
 }
 
-
 function valid(input_val){
   if(input_val == "" || isNaN(input_val)) return -1;
   return parseFloat(input_val);
@@ -58,7 +57,8 @@ function add_edge(){
   var b = valid(ops[0].inputs[1].value());
   var c = valid(ops[0].inputs[2].value());
   
-  graph.add_edge(a, b, c);
+  dijkstra.graph.add_edge(a, b, c);
+  dijkstra.init_dijkstra();
 }
 
 function delete_edge(){
@@ -66,29 +66,33 @@ function delete_edge(){
   var a = valid(ops[1].inputs[0].value());
   var b = valid(ops[1].inputs[1].value());
   
-  graph.delete_edge(a, b);
+  dijkstra.graph.delete_edge(a, b);
+  dijkstra.init_dijkstra();
 }
 
 function change_n(){
   
   var a = valid(ops[2].inputs[0].value());
-  graph.change_n(a);
+  dijkstra.graph.change_n(a);
+  dijkstra.init_dijkstra();
   
 }
 
 function create_random(){
-  graph.create_random();
+  dijkstra.graph.create_random();
+  dijkstra.init_dijkstra();
 }
 
 function cal_dijkstra(){
-  graph.cal_dijkstra();
+  dijkstra.cal_dijkstra();
 }
 
 function add_start(){
   var a = valid(ops[4].inputs[0].value());
-  graph.add_start(a);
+  dijkstra.add_start(a);
 }
 
 function restart(){
-  graph.init_dijkstra();
+  dijkstra.init_dijkstra();
 }
+

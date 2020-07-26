@@ -29,3 +29,14 @@ function Option(txt, n_input){
   this.create_design();
   
 }
+
+function draw_box(col, txt, x, y){
+    
+    fill(col);
+    rect(width - 150, y, 150, 40);
+
+    fill('black');
+    textSize(20);
+    text(txt, x, y + 30);
+  
+}
