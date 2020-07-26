@@ -50,3 +50,14 @@ function draw_box(col, txt, y){
     text(txt, width - 75 - textWidth(txt)/2 , y + 30);
     strokeWeight(1);
 }
+
+function first_d(n){
+  var sign = n < 0 ? -1 : 1;
+  n = abs(n);
+  if (String(n).length > 2) {
+      var d = Math.pow(10, String(n).length-2);
+      n = Math.ceil(n/d);
+  }
+  return n*sign;
+
+}
