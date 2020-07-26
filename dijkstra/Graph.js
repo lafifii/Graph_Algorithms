@@ -218,7 +218,7 @@ function Graph(n, rd){
     
     this.t = 0;
     this.discovered = new Array(this.n);
-    this.pq = new PriorityQueue();
+    this.pq = new PriorityQueue((a, b) => a[1] < b[1]);
     this.starting_nodes = new Set();
     this.lim = 1;
     
