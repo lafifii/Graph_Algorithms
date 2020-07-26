@@ -21,18 +21,25 @@ function Box(x, y, r){
     circle(this.x, this.y, this.r*2);
     
     strokeWeight(1);
-    stroke('magenta');
-    fill('magenta');
+    if(this.on) {
+	stroke('magenta');
+    	fill('magenta');
+    }
+    else{
+	stroke('grey');
+    	fill('grey');
+    }
+
     for(var i = 0; i < this.n; ++i){
       line(this.lines[i][0], this.lines[i][1], this.lines[i][2], this.lines[i][3]);
     }
     
     if(this.on){
-      this.show_info()
+      this.show_info();
     }
     
-    strokeWeight(2);
     stroke('white');
+    strokeWeight(1.3);
     fill('white');
     textSize(25);
     text(this.txt, this.x - textWidth(this.txt)/2 , this.y + 10);
@@ -102,3 +109,4 @@ function Box(x, y, r){
     return this.on;
   }
 }
+
