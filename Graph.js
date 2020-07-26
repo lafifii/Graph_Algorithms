@@ -30,7 +30,7 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
       for(var j = 0; j < this.n; ++j){
         var pr = Math.random();
         if(pr < 0.02){
-          var w = random( max(-this.w_max, this.w_min), this.w_max);
+          var w = random( max(0, this.w_min), this.w_max);
           if(this.check_unique(i, j)) continue;
           this.lad[i].push([j, w]);
 
