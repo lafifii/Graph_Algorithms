@@ -89,12 +89,13 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
         for(var j = 0; j < this.lad[i].length; ++j){
           var item = this.lad[i][j][0];
 
+          stroke('#2e4057');
           if(this.discovered.length == this.n && this.discovered[i].has(item) ){
-             stroke('magenta');
+             strokeWeight(1.3);
           }
           else{
             if(flag) noStroke();
-            else stroke('grey');
+            else strokeWeight(0.3);
           }
 
           if(i == item)
@@ -112,6 +113,7 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
           var item = this.lad[i][j][0];
           if(i == item) continue;
 
+          noStroke();
           if(this.discovered.length == this.n && !this.discovered[i].has(item) ){
              if(flag) continue;
           }
@@ -126,6 +128,7 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
     flag = (!this.show_all & flag);
 
     if(this.n != 0){
+      textSize(20);
       this.let_h = this.pts[0].w;
 
       this.draw_edges(flag);
@@ -143,9 +146,9 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
             txt_y = (this.pts[i].y + this.pts[item].y)/2;
           }
 
-          stroke(0);
-          fill('white');
-          textSize(15);
+          noStroke();
+          textSize(12);
+          fill(0);
 
           if(this.show_w){
             if(this.discovered.length == this.n && !this.discovered[i].has(item) ){
@@ -195,14 +198,14 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
   this.draw_arrow = function(x1, x2) {
 
     push();
-    stroke('grey');
-    var offset = this.rd/3;
+    stroke('#2E4057');
+    var offset = this.rd/4;
     var angle = atan2(x1.y - x2.y, x1.x - x2.x);
 
     translate(x2.x + this.rd/2*cos(angle), x2.y + this.rd/2*sin(angle) );
     rotate(angle-HALF_PI);
 
-    fill('black');
+    fill('#2E4057');
     triangle(-offset*0.5, offset, offset*0.5, offset, 0, -offset/2);
     pop();
 

@@ -4,61 +4,67 @@ function Box(x, y, r){
   this.r = r;
   this.x_txt = 0;
   this.y_txt = 0;
-  this.n = 50;
+  this.n = 70;
   this.lines = [];
   this.on = 0;
   this.txt = '';
   this.info = [];
   this.txt_sz = 15;
   this.dir = '';
-  
+
   this.show = function(){
     if(this.lines.length == 0) this.create_lines();
-    
+
     strokeWeight(1);
-    stroke('grey');
-    fill(0);
+    noStroke();
+    fill('#8d96a3');
     circle(this.x, this.y, this.r*2);
-    
+
     strokeWeight(1);
     if(this.on) {
-	stroke('magenta');
-    	fill('magenta');
+	    stroke('#d1495b');
+    	fill('#d1495b');
     }
     else{
-	stroke('grey');
-    	fill('grey');
+	     stroke('grey');
+    	 fill('grey');
     }
 
     for(var i = 0; i < this.n; ++i){
       line(this.lines[i][0], this.lines[i][1], this.lines[i][2], this.lines[i][3]);
     }
-    
+
     if(this.on){
       this.show_info();
     }
-    
-    stroke('white');
+
+    if(this.on){
+      stroke(0);
+      fill(0);
+    }
+    else{
+      stroke('#2e4057');
+      fill('#2e4057');
+    }
     strokeWeight(1.3);
-    fill('white');
-    textSize(25);
+    textSize(20);
     text(this.txt, this.x - textWidth(this.txt)/2 , this.y + 10);
-    
-    
+
+
   }
-  
+
   this.show_info = function(){
     push();
-    stroke('white');
-    fill('white');
+    stroke('#2e4057');
+    fill('#2e4057');
     textSize(this.txt_sz);
     strokeWeight(1);
     var space = this.info.length*this.txt_sz/2;
     for(var i = 0; i < this.info.length; ++i)
       text(this.info[i], this.x_txt - textWidth(this.info[i])/2, this.y_txt + i*15 - space);
-    pop(); 
+    pop();
   }
-  
+
   this.create_lines = function(){
     for(var i = 0 ; i < this.n; ++i){
       var x1, y1, x2, y2, ang;
@@ -66,47 +72,46 @@ function Box(x, y, r){
       ang = 2 * PI * random(1, 360) / 360;
       x1 = this.x + this.r*cos( ang );
       y1 = this.y + this.r*sin( ang );
-      
+
       ang = 2 * PI * random(1, 360) / 360;
       x2 = this.x + this.r*cos( ang );
       y2 = this.y + this.r*sin( ang );
-    
+
       this.lines.push([x1, y1, x2, y2]);
     }
-  
+
   }
-  
+
   this.update = function(){
     var d = dist(mouseX, mouseY, this.x, this.y);
     this.on = d <= this.r;
   }
-  
+
   this.add_txt = function(x, y, txt, dir){
-    
+
     this.dir = dir;
     this.x_txt = x;
     this.y_txt = y;
     var aux = txt.split(' ');
     var line = '';
-    
+
     for(var i = 0; i < aux.length; ++i){
-      
+
       line+= aux[i] + " ";
-      if(line.length >= 15){ 
+      if(line.length >= 15){
         this.info.push(line);
         line = '';
       }
     }
-    
+
     if(line.length != 0) this.info.push(line);
-    
+
   }
-  
+
   this.clicked = function(){
-    if(this.on){ 
+    if(this.on){
       window.open(this.dir);
     }
     return this.on;
   }
 }
-

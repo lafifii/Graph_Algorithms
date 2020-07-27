@@ -69,19 +69,19 @@ function BFS(n, rd, w_min, w_max, show_w){
 
     this.graph.show(this.bfs_tree.length > 0 || this.t == this.lim);
 
-    textSize(30);!
-    fill('white');
+    textSize(25);
+    fill(0);
     text("Breadth-First Search Algorithm", 25, 40);
     textSize(20);
 
     if(this.bfs_tree.length == 0 || mouseIsPressed){
 
       if(this.t == this.lim){
-        draw_box('magenta', "Done! ", 40)
+        draw_box('#d1495b', "Done! ", 40)
         for(var i = 0; i < this.graph.n; ++i){
           if(this.graph.pts[i].on == 1){
             var d = this.graph.pts[i].dis == -1 ? 'x' : this.graph.pts[i].dis;
-            draw_box('cyan', "distance : " + d, 80);
+            draw_box('#00798c', "distance : " + d, 80);
             break;
           }
         }
@@ -107,8 +107,8 @@ function BFS(n, rd, w_min, w_max, show_w){
       this.graph.pts[x].on_q = 1;
     }
 
-    draw_box('#09FBD3', "visited: " + this.bfs_tree[this.t][1], 40);
-    draw_box('yellow', "on queue", 80);
+    draw_box('#00798c', "visited: " + this.bfs_tree[this.t][1], 40);
+    draw_box('#d1495b', "on queue", 80);
 
     if(this.t < this.lim) this.t++;
     if(this.t == this.lim){

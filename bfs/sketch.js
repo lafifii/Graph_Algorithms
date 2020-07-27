@@ -10,7 +10,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background('#8d96a3');
   bfs.show();
 }
 

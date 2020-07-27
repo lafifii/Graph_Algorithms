@@ -76,22 +76,22 @@ function Dijkstra(n, rd, w_min, w_max, show_w){
 
     this.graph.show(this.path.length > 0 || this.t == this.lim);
 
-    textSize(30);!
-    fill('white');
+    textSize(25);
+    fill(0);
     text("Dijkstra Algorithm", 25, 40);
     textSize(20);
 
     if(this.path.length == 0 || mouseIsPressed){
 
       if(this.t == this.lim){
-        draw_box('magenta', "Done! ", 40)
+        draw_box('#d1495b', "Done! ", 40)
         for(var i = 0; i < this.graph.n; ++i){
           if(this.graph.pts[i].on == 1){
 
             var txt = "distance : ";
             txt+= (this.graph.pts[i].dis == inf) ? " x": Math.round(this.graph.pts[i].dis * 10) / 10;
 
-            draw_box('cyan', txt, 80);
+            draw_box('#00798c', txt, 80);
             break;
           }
         }
@@ -120,8 +120,8 @@ function Dijkstra(n, rd, w_min, w_max, show_w){
       this.graph.pts[it].on_q = 1;
     }
 
-    draw_box('cyan', "visited: " + this.path[this.t][1], 40);
-    draw_box('yellow', 'on queue', 80);
+    draw_box('#00798c', "visited: " + this.path[this.t][1], 40);
+    draw_box('#d1495b', 'on queue', 80);
     if(this.t < this.lim) this.t++;
     if(this.t == this.lim) this.path = [];
 

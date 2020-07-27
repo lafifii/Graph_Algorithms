@@ -1,7 +1,7 @@
 function Option(txt, n_input){
 
    this.create_design = function(){
-    this.button.style('background-color', '#27E7EA')
+    this.button.style('background-color', '#8d96a3')
     this.button.style('border-radius','20px');
     this.button.style('border','none');
     this.button.style('font-family','arial');
@@ -43,9 +43,8 @@ function draw_box(col, txt, y){
     fill(col);
     textSize(20);
 
+    noStroke();
     rect(width - 160, y, 160, 40);
-
-    strokeWeight(0);
     fill(0);
     text(txt, width - 75 - textWidth(txt)/2 , y + 30);
     strokeWeight(1);

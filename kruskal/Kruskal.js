@@ -83,17 +83,17 @@ function Kruskal(n, rd, w_min, w_max, show_w){
 
     this.graph.show(this.mst.length > 0 || this.t == this.lim);
 
-    textSize(30);!
-    fill('white');
+    textSize(25);
+    fill(0);
     text("Kruskal's Algorithm", 25, 40);
     textSize(20);
 
-    draw_box('cyan', "MST cost: " + Math.round(this.cost_mst*10)/10, 40);
+    draw_box('#00798c', "MST cost: " + Math.round(this.cost_mst*10)/10, 40);
 
     if(this.mst.length == 0 || mouseIsPressed){
 
       if(this.t == this.lim){
-        draw_box('magenta', "Done! ", 80);
+        draw_box('#d1495b', "Done! ", 80);
       }
       frameRate(30);
       return;

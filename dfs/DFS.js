@@ -43,15 +43,16 @@ function DFS(n, rd, w_min, w_max, show_w){
   this.show = function(){
 
     this.graph.show(this.dfs_tree.length > 0 || this.graph.n > 0 && this.graph.pts[this.graph.n - 1].vis);
-    textSize(30);!
-    fill('white');
+    
+    textSize(25);
+    fill(0);
     text("Depth-First Search Algorithm", 25, 40);
     textSize(20);
 
     if(this.dfs_tree.length == 0 || mouseIsPressed){
 
       if(this.graph.n > 0 && this.graph.pts[this.graph.n - 1].vis == 1)
-        draw_box('magenta', "Done! ", 40)
+        draw_box('#d1495b', "Done! ", 40)
 
       frameRate(30);
       return;
@@ -67,7 +68,7 @@ function DFS(n, rd, w_min, w_max, show_w){
       if( p != -1) this.graph.discovered[p].add(u);
 
     }
-    draw_box('cyan', "visited: " + this.dfs_tree[this.t][1], 40)
+    draw_box('#00798c', "visited: " + this.dfs_tree[this.t][1], 40)
     if(this.t < this.graph.n) this.t++;
     if(this.t == this.graph.n) this.dfs_tree = [];
 

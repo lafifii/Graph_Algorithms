@@ -8,14 +8,14 @@ function setup() {
 
   for(var i = 1; i <= 4; ++i){
     var ang = 2 * PI * i / 4;
-    boxes.push(new Box(width/2 + r*cos(ang), height/2 + r*sin(ang), 70));
+    boxes.push(new Box(width/2 + r*cos(ang), height/2 + r*sin(ang), 60));
   }
   add_information();
 
 }
 
 function draw() {
-  background(0);
+  background('#8d96a3');
 
   var ok = 0;
 
@@ -27,7 +27,7 @@ function draw() {
     line(boxes[i].x, boxes[i].y, boxes[nxt].x, boxes[nxt].y);
   }
 
-  stroke('cyan');
+  stroke('#00798c');
   line(width/2, 0, width/2, height);
   line(0, height/2, width, height/2);
 
@@ -43,7 +43,7 @@ function draw() {
 }
 
 function draw_title(){
-  fill(0);
+  fill('#8d96a3');
   beginShape();
   for(i = 1; i <= 4; ++i){
     var ang = 2 * PI * i / 4;
@@ -52,8 +52,8 @@ function draw_title(){
   endShape(CLOSE);
 
   strokeWeight(1);
-  stroke('white');
-  fill('white');
+  stroke(0);
+  fill(0);
   textSize(25);
   text("Graph", width/2 - textWidth('Graph')/2, height/2);
   text("Algorithms", width/2 - textWidth('Algorithms')/2, height/2 + 20);
