@@ -27,6 +27,7 @@ function draw() {
     line(boxes[i].x, boxes[i].y, boxes[nxt].x, boxes[nxt].y);
   }
 
+  strokeWeight(2);
   stroke('#00798c');
   line(width/2, 0, width/2, height);
   line(0, height/2, width, height/2);

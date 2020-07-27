@@ -21,14 +21,8 @@ function Box(x, y, r){
     circle(this.x, this.y, this.r*2);
 
     strokeWeight(1);
-    if(this.on) {
-	    stroke('#d1495b');
-    	fill('#d1495b');
-    }
-    else{
-	     stroke('grey');
-    	 fill('grey');
-    }
+    stroke('grey');
+    fill('grey');
 
     for(var i = 0; i < this.n; ++i){
       line(this.lines[i][0], this.lines[i][1], this.lines[i][2], this.lines[i][3]);
@@ -55,8 +49,8 @@ function Box(x, y, r){
 
   this.show_info = function(){
     push();
-    stroke('#2e4057');
-    fill('#2e4057');
+    stroke(0);
+    fill(0);
     textSize(this.txt_sz);
     strokeWeight(1);
     var space = this.info.length*this.txt_sz/2;
