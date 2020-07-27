@@ -7,7 +7,7 @@ function Box(x, y, r){
   this.n = 70;
   this.lines = [];
   this.on = 0;
-  this.txt = '';
+  this.txt = [];
   this.info = [];
   this.txt_sz = 15;
   this.dir = '';
@@ -42,8 +42,11 @@ function Box(x, y, r){
     }
     strokeWeight(1.3);
     textSize(20);
-    text(this.txt, this.x - textWidth(this.txt)/2 , this.y + 10);
 
+    var h = 10 - (this.txt.length - 1)* 10;
+    for(i = 0; i < this.txt.length; ++i){
+      text(this.txt[i], this.x - textWidth(this.txt[i])/2 , this.y + h + i*20);
+    }
 
   }
 

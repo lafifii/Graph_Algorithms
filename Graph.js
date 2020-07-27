@@ -1,6 +1,6 @@
 
 
-function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
+function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1, self_loops=1){
   this.n = n;
   this.lad = new Array(this.n);
   this.discovered = new Array(this.n);
@@ -12,6 +12,7 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
   this.show_w = show_w;
   this.direction = direction;
   this.show_all = show_all;
+  this.self_loops = self_loops;
 
   this.create_random = function(){
 
@@ -28,6 +29,7 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
 
     for(i = 0; i < this.n; ++i){
       for(var j = 0; j < this.n; ++j){
+        if(this.self_loops == 0 && i == j) continue;
         var pr = Math.random();
         if(pr < 0.02){
           var w = random(first_d(this.w_min), first_d(this.w_max));
@@ -55,7 +57,9 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1){
     if(w < this.w_min || a < 0 || a >= this.n || b < 0 || b >= this.n)
       return;
 
+    if(this.self_loops == 0 && a == b) return;
     if(this.check_unique(a, b)) return;
+
     this.lad[a].push([b, w]);
     if(this.direction) this.lad[b].push([a, w]);
 
