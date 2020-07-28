@@ -90,7 +90,7 @@ function Dijkstra(n, rd, w_min, w_max, frame_rate, show_w=1){
           if(this.graph.pts[i].on == 1){
 
             var txt = "distance : ";
-            txt+= (this.graph.pts[i].dis == inf) ? " x": Math.round(this.graph.pts[i].dis * 10) / 10;
+            txt+= (this.graph.pts[i].dis >= inf) ? " x": Math.round(this.graph.pts[i].dis * 10) / 10;
 
             draw_box('#00798c', txt, 80);
             break;

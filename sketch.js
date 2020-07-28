@@ -1,5 +1,6 @@
 var boxes = [];
 var r = 190;
+var info = [];
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
@@ -18,7 +19,7 @@ function draw() {
   background('#8d96a3');
 
   var ok = 0;
-
+  strokeWeight(3);
   draw_title();
   for(i = 0; i < boxes.length; ++i){
     boxes[i].update();
@@ -26,7 +27,10 @@ function draw() {
     ok|= boxes[i].on;
   }
   if(ok) cursor(HAND);
-  else cursor(ARROW);
+  else{
+    show_info(info, 15, width*0.75, height*0.5);
+    cursor(ARROW);
+  }
 
 }
 
@@ -56,6 +60,11 @@ function  mousePressed(){
 }
 
 function add_information(){
+
+  info = split_info('Hi, here you will find interactive animations of some ' +
+                    'main Graph Algorithms. Click in any of the nodes from the graph ' +
+                    'in the left to try. For a better experience check this in a computer!');
+
   boxes[0].txt = ['DFS'];
   boxes[0].add_txt(width*0.75, height*0.5,
                    'The Depth first search (DFS) is a Graph Traversal Algorithm. ' +
@@ -96,12 +105,42 @@ function add_information(){
                   'graph, and if it does, find one of these cycles.',
                   'bford/index.html');
 
-  boxes[5].txt = ['Euler', 'Path'];
+  boxes[5].txt = ['Korasaju'];
   boxes[5].add_txt(width*0.75, height*0.5,
-                  'A Eulerian path is a path in a graph that passes ' +
-                  'through all of its edges exactly once. ' +
-                  'The problem is to find the ' +
-                  'Eulerian path in an undirected multigraph with loops.',
-                  'euler/index.html');
+                  'Korasaju\'s Algorithm finds the Strongly ' +
+                  'Connected Components (SCC) of an undirected graph.',
+                  'korasaju/index.html');
+
+}
+
+function show_info(info, txt_sz, x, y){
+  push();
+  stroke(0);
+  fill(0);
+  textSize(txt_sz);
+  strokeWeight(1);
+  var space = info.length*txt_sz/2;
+  for(var i = 0; i < info.length; ++i)
+    text(info[i], x - textWidth(info[i])/2, y + i*txt_sz - space);
+  pop();
+}
+
+function split_info(txt, width_txt=15){
+  var aux = txt.split(' ');
+  var line = '';
+  var arr = [];
+
+  for(var i = 0; i < aux.length; ++i){
+
+    line+= aux[i] + " ";
+    if(line.length >= width_txt){
+      arr.push(line);
+      line = '';
+    }
+  }
+
+  if(line.length != 0) arr.push(line);
+
+  return arr;
 
 }

@@ -29,7 +29,7 @@ function Box(x, y, r){
     }
 
     if(this.on){
-      this.show_info();
+      show_info(this.info, this.txt_sz, this.x_txt, this.y_txt);
     }
 
     if(this.on){
@@ -48,18 +48,6 @@ function Box(x, y, r){
       text(this.txt[i], this.x - textWidth(this.txt[i])/2 , this.y + h + i*20);
     }
 
-  }
-
-  this.show_info = function(){
-    push();
-    stroke(0);
-    fill(0);
-    textSize(this.txt_sz);
-    strokeWeight(1);
-    var space = this.info.length*this.txt_sz/2;
-    for(var i = 0; i < this.info.length; ++i)
-      text(this.info[i], this.x_txt - textWidth(this.info[i])/2, this.y_txt + i*15 - space);
-    pop();
   }
 
   this.create_lines = function(){
@@ -89,19 +77,7 @@ function Box(x, y, r){
     this.dir = dir;
     this.x_txt = x;
     this.y_txt = y;
-    var aux = txt.split(' ');
-    var line = '';
-
-    for(var i = 0; i < aux.length; ++i){
-
-      line+= aux[i] + " ";
-      if(line.length >= 15){
-        this.info.push(line);
-        line = '';
-      }
-    }
-
-    if(line.length != 0) this.info.push(line);
+    this.info = split_info(txt);
 
   }
 

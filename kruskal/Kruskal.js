@@ -88,7 +88,8 @@ function Kruskal(n, rd, w_min, w_max, frame_rate, show_w=1){
     text("Kruskal's Algorithm", 25, 40);
     textSize(20);
 
-    draw_box('#00798c', "MST cost: " + Math.round(this.cost_mst*10)/10, 40);
+    var val = this.cost_mst + this.cost_fixed;
+    draw_box('#00798c', "MST cost: " + Math.round(val*10)/10, 40);
 
     if(this.mst.length == 0 || mouseIsPressed){
 
@@ -101,7 +102,7 @@ function Kruskal(n, rd, w_min, w_max, frame_rate, show_w=1){
 
     frameRate(this.frame_rate);
 
-    this.cost_mst = this.cost_fixed;
+    this.cost_mst = 0;
     for(var i = 0; i <= this.t; ++i){
       let p = this.mst[i][0];
       let u = this.mst[i][1];

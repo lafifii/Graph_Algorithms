@@ -36,6 +36,7 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1, self_loop
           if(this.check_unique(i, j)) continue;
           this.lad[i].push([j, w]);
 
+
           if(this.direction){
             this.lad[j].push([i, w]);
           }
@@ -61,7 +62,9 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1, self_loop
     if(this.check_unique(a, b)) return;
 
     this.lad[a].push([b, w]);
-    if(this.direction) this.lad[b].push([a, w]);
+    if(this.direction){
+      this.lad[b].push([a, w]);
+    }
 
   }
 
@@ -75,6 +78,7 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1, self_loop
         this.lad[a].splice(i, 1);
       }
     }
+
   }
 
   this.delete_node = function(id){
@@ -85,6 +89,7 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1, self_loop
         }
       }
     }
+
   }
 
   this.draw_edges = function(flag){
@@ -245,6 +250,16 @@ function Graph(n, rd, w_min, w_max, show_w, direction=0, show_all = 1, self_loop
       if(item[0] == b) return [ a, b, item[1] ];
 
     return [-1, -1, -1];
+  }
+
+  this.get_transpose = function(){
+    var transpose = new Array(this.n);
+    for(var i = 0; i < this.n; ++i) transpose[i] = [];
+
+    for(var i = 0; i < this.n; ++i){
+      for(let item of this.lad[i]) transpose[item[0]].push([i, item[1]]);
+    }
+    return transpose;
   }
 
   this.show_all_edges = function(){
