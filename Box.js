@@ -21,8 +21,8 @@ function Box(x, y, r){
     circle(this.x, this.y, this.r*2);
 
     strokeWeight(1);
-    stroke('grey');
-    fill('grey');
+    stroke('#AFAFAF');
+    fill('#AFAFAF');
 
     for(var i = 0; i < this.n; ++i){
       line(this.lines[i][0], this.lines[i][1], this.lines[i][2], this.lines[i][3]);
