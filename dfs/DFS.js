@@ -77,7 +77,7 @@ function DFS(n, rd, w_min, w_max, frame_rate, show_w=0){
   }
 
   this.finish_animation = function(){
-    this.t = this.lim - 1;
+    this.t = max(this.t, this.lim - 1);
   }
 
 }
