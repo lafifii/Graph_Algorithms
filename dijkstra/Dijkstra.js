@@ -1,6 +1,7 @@
 var inf = 10000000000000;
 
-function Dijkstra(n, rd, w_min, w_max, show_w){
+function Dijkstra(n, rd, w_min, w_max, frame_rate, show_w=1){
+  this.frame_rate = frame_rate;
   this.path = [];
   this.pq = new PriorityQueue((a, b) => a[1] < b[1]);
   this.lim = 1;
@@ -101,7 +102,7 @@ function Dijkstra(n, rd, w_min, w_max, show_w){
     }
 
 
-    frameRate(2);
+    frameRate(this.frame_rate);
 
 
     for(var i = 0; i <= this.t; ++i){
@@ -138,6 +139,10 @@ function Dijkstra(n, rd, w_min, w_max, show_w){
       this.pq.push([node, 0, -1]);
       this.graph.pts[node].starting_node = 1;
     }
+  }
+
+  this.finish_animation = function(){
+    this.t = this.lim - 1;
   }
 
 }

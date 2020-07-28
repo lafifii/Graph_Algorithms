@@ -1,5 +1,6 @@
 
-function BFS(n, rd, w_min, w_max, show_w){
+function BFS(n, rd, w_min, w_max, frame_rate, show_w=0){
+  this.frame_rate = frame_rate;
   this.t = 0;
   this.bfs_tree = [];
   this.on_queue = [];
@@ -91,7 +92,7 @@ function BFS(n, rd, w_min, w_max, show_w){
       return;
     }
 
-    frameRate(2);
+    frameRate(this.frame_rate);
     for(var i = 0; i <= this.t; ++i){
 
       let p = this.bfs_tree[i][0];
@@ -127,5 +128,9 @@ function BFS(n, rd, w_min, w_max, show_w){
       this.graph.pts[node].vis = 1;
       this.q.enqueue(node);
     }
+  }
+
+  this.finish_animation = function(){
+    this.t = this.lim - 1;
   }
 }

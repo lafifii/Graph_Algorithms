@@ -1,12 +1,14 @@
-function Kruskal(n, rd, w_min, w_max, show_w){
+function Kruskal(n, rd, w_min, w_max, frame_rate, show_w=1){
+  this.frame_rate = frame_rate;
   this.mst = [];
   this.cost_mst = 0;
+  this.cost_fixed = 0;
   this.dsu = new DSU(n);
   this.t = 0;
   this.lim = 1;
   this.comp = 0;
   this.graph = new Graph(n, rd, w_min, w_max, show_w, 1);
-  this.fixed = [];
+  this.fixed = 0;
 
   this.cal_kruskal = function(){
     if(this.mst.length > 0) return;
@@ -39,16 +41,10 @@ function Kruskal(n, rd, w_min, w_max, show_w){
 
   this.kruskal = function(){
 
-    this.cost_mst = 0;
-    for(let item of this.fixed){
-      this.dsu.union(item[0], item[1]);
-      this.cost_mst+= item[2];
-    }
+    this.cost_mst = this.cost_fixed;
 
-    this.fixed = [];
     var cn = 0;
     var edges = this.graph.get_edges();
-
 
     for(var i = 0; i < edges.length; ++i){
       if(cn == this.graph.n - this.comp) break;
@@ -77,6 +73,10 @@ function Kruskal(n, rd, w_min, w_max, show_w){
       this.graph.discovered[i] = new Set();
       this.graph.pts[i].vis = 0;
     }
+
+    this.fixed = 0;
+    this.cost_fixed = 0;
+    
   }
 
   this.show = function(){
@@ -99,8 +99,9 @@ function Kruskal(n, rd, w_min, w_max, show_w){
       return;
     }
 
-    frameRate(2);
+    frameRate(this.frame_rate);
 
+    this.cost_mst = this.cost_fixed;
     for(var i = 0; i <= this.t; ++i){
       let p = this.mst[i][0];
       let u = this.mst[i][1];
@@ -119,7 +120,7 @@ function Kruskal(n, rd, w_min, w_max, show_w){
   this.fix_edge = function(a, b){
     if(a < 0 || a >= this.graph.n) return;
     if(b < 0 || b >= this.graph.n) return;
-    if(this.fixed.length == 0) this.init_kruskal();
+    if(this.fixed == 0) this.init_kruskal();
 
     var edge = this.graph.get_edge(a, b);
 
@@ -130,8 +131,12 @@ function Kruskal(n, rd, w_min, w_max, show_w){
     this.graph.discovered[edge[0]].add(edge[1]);
     this.graph.discovered[edge[1]].add(edge[0]);
 
-    this.fixed.push(edge);
-    this.cost_mst += edge[2];
+    this.cost_fixed += edge[2];
+    this.fixed++;
 
+  }
+
+  this.finish_animation = function(){
+    this.t = this.lim - 1;
   }
 }

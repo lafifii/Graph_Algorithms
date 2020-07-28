@@ -1,16 +1,21 @@
 var kruskal;
 var ops = [];
+var slider;
 
 function setup() {
 
-  kruskal = new Kruskal(0, 30, -1000000, 30, 1);
+  var frame_rate = 2;
+  kruskal = new Kruskal(0, 30, -1000000, 30, frame_rate);
   textFont('Oswald', 20);
   create_interaction();
+
+  slider = createSlider(1 , 40 , frame_rate);
   createCanvas(windowWidth,windowHeight);
 }
 
 function draw() {
   background('#8d96a3');
+  kruskal.frame_rate = slider.value();
   kruskal.show();
 }
 
@@ -47,6 +52,14 @@ function create_interaction(){
   // show all or not
   ops.push(new Option(['show MST only', 'show all edges'], 0));
   ops[7].button.mousePressed(change_state);
+
+  // finish
+  ops.push(new Option(['finish'], 0));
+  ops[8].button.mousePressed(finish_animation);
+}
+
+function finish_animation(){
+  kruskal.finish_animation();
 }
 
 function valid(input_val){

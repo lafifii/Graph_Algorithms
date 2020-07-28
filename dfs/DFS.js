@@ -1,7 +1,9 @@
 
-function DFS(n, rd, w_min, w_max, show_w){
+function DFS(n, rd, w_min, w_max, frame_rate, show_w=0){
+  this.frame_rate = frame_rate;
   this.dfs_tree = [];
   this.t = 0;
+  this.lim = 1;
   this.graph = new Graph(n, rd, w_min, w_max, show_w);
 
   this.cal_dfs = function(){
@@ -16,7 +18,7 @@ function DFS(n, rd, w_min, w_max, show_w){
     }
 
     for(i = 0; i < this.graph.n; ++i) this.graph.pts[i].vis = 0;
-
+    this.lim = this.dfs_tree.length;
   }
 
   this.dfs = function(u, p){
@@ -42,8 +44,8 @@ function DFS(n, rd, w_min, w_max, show_w){
 
   this.show = function(){
 
-    this.graph.show(this.dfs_tree.length > 0 || this.graph.n > 0 && this.graph.pts[this.graph.n - 1].vis);
-    
+    this.graph.show(this.dfs_tree.length > 0 || this.t == this.lim);
+
     textSize(25);
     fill(0);
     text("Depth-First Search Algorithm", 25, 40);
@@ -51,14 +53,14 @@ function DFS(n, rd, w_min, w_max, show_w){
 
     if(this.dfs_tree.length == 0 || mouseIsPressed){
 
-      if(this.graph.n > 0 && this.graph.pts[this.graph.n - 1].vis == 1)
+      if(this.t == this.lim)
         draw_box('#d1495b', "Done! ", 40)
 
       frameRate(30);
       return;
     }
 
-    frameRate(2);
+    frameRate(this.frame_rate);
     for(var i = 0; i <= this.t; ++i){
 
       let p = this.dfs_tree[i][0];
@@ -69,9 +71,13 @@ function DFS(n, rd, w_min, w_max, show_w){
 
     }
     draw_box('#00798c', "visited: " + this.dfs_tree[this.t][1], 40)
-    if(this.t < this.graph.n) this.t++;
-    if(this.t == this.graph.n) this.dfs_tree = [];
+    if(this.t < this.lim) this.t++;
+    if(this.t == this.lim) this.dfs_tree = [];
 
+  }
+
+  this.finish_animation = function(){
+    this.t = this.lim - 1;
   }
 
 }

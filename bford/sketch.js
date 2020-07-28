@@ -1,28 +1,30 @@
-var bfs;
+var bford;
 var ops = [];
 var slider;
 
 function setup() {
 
   var frame_rate = 2;
-  bfs = new BFS(0, 30, 0, 0, frame_rate);
+  bford = new BellmanFord(0, 30, -100000, 30, frame_rate);
+
   textFont('Oswald', 20);
 
   create_interaction();
   slider = createSlider(1 , 40 , frame_rate);
+
   createCanvas(windowWidth,windowHeight);
 }
 
 function draw() {
   background('#8d96a3');
-  bfs.frame_rate = slider.value();
-  bfs.show();
+  bford.frame_rate = slider.value();
+  bford.show();
 }
 
 function create_interaction(){
 
   // edge to add
-  ops.push(new Option(['add edge'], 2));
+  ops.push(new Option(['add edge'], 3));
   ops[0].button.mousePressed(add_edge);
 
   // edge to delete
@@ -37,29 +39,31 @@ function create_interaction(){
   ops.push(new Option(['random graph'], 0));
   ops[3].button.mousePressed(create_random);
 
-  // add start
+  // add start bford
   ops.push(new Option(['add start'], 1));
   ops[4].button.mousePressed(add_start);
 
-  // run bfs
-  ops.push(new Option(['run BFS'], 0));
-  ops[5].button.mousePressed(cal_bfs);
+  // run bford
+  ops.push(new Option(['run Bellman Ford'], 0));
+  ops[5].button.mousePressed(cal_bellman_ford);
 
   // restart
   ops.push(new Option(['restart'], 0));
   ops[6].button.mousePressed(restart);
 
   // show all or not
-  ops.push(new Option(['show path', 'show all edges'], 0));
+  ops.push(new Option(['show evaluated edge', 'show all edges'], 0));
   ops[7].button.mousePressed(change_state);
 
   // finish
   ops.push(new Option(['finish'], 0));
   ops[8].button.mousePressed(finish_animation);
+
+
 }
 
 function finish_animation(){
-  bfs.finish_animation();
+  bford.finish_animation();
 }
 
 function valid(input_val){
@@ -71,10 +75,10 @@ function add_edge(){
 
   var a = valid(ops[0].inputs[0].value());
   var b = valid(ops[0].inputs[1].value());
-  var c = 0;
+  var c = valid(ops[0].inputs[2].value());
 
-  bfs.graph.add_edge(a, b, c);
-  bfs.init_bfs();
+  bford.graph.add_edge(a, b, c);
+  bford.init_bellman_ford();
 }
 
 function delete_edge(){
@@ -82,37 +86,37 @@ function delete_edge(){
   var a = valid(ops[1].inputs[0].value());
   var b = valid(ops[1].inputs[1].value());
 
-  bfs.graph.delete_edge(a, b);
-  bfs.init_bfs();
+  bford.graph.delete_edge(a, b);
+  bford.init_bellman_ford();
 }
 
 function change_n(){
 
   var a = valid(ops[2].inputs[0].value());
-  bfs.graph.change_n(a);
-  bfs.init_bfs();
+  bford.graph.change_n(a);
+  bford.init_bellman_ford();
 
 }
 
 function create_random(){
-  bfs.graph.create_random();
-  bfs.init_bfs();
+  bford.graph.create_random();
+  bford.init_bellman_ford();
 }
 
-function cal_bfs(){
-  bfs.cal_bfs();
+function cal_bellman_ford(){
+  bford.cal_bellman_ford();
 }
 
 function add_start(){
   var a = valid(ops[4].inputs[0].value());
-  bfs.add_start(a);
+  bford.add_start(a);
 }
 
 function restart(){
-  bfs.init_bfs();
+  bford.init_bellman_ford();
 }
 
 function change_state(){
   ops[7].change_text();
-  bfs.graph.show_all_edges();
+  bford.graph.show_all_edges();
 }
