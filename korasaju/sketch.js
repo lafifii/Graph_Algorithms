@@ -47,7 +47,7 @@ function create_interaction(){
   ops[5].button.mousePressed(restart);
 
   // show all or not
-  ops.push(new Option([ 'show components', 'show all edges'], 0));
+  ops.push(new Option([ 'show SCC', 'show all edges'], 0));
   ops[6].button.mousePressed(change_state);
 
   // finish
