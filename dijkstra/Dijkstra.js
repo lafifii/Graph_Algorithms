@@ -79,7 +79,7 @@ function Dijkstra(n, rd, w_min, w_max, frame_rate, show_w=1){
 
     textSize(25);
     fill(0);
-    text("Dijkstra Algorithm", 25, 40);
+    text("Dijkstra\'s Algorithm", 25, 40);
     textSize(20);
 
     if(this.path.length == 0 || mouseIsPressed){
