@@ -7,8 +7,8 @@ function setup() {
 
   textFont('Montserrat', 25);
 
-  for(var i = 0; i < 6; i++){
-    var ang = 2 * PI * i / 6;
+  for(var i = 0; i < 7; i++){
+    var ang = 2 * PI * i / 7;
     boxes.push(new Box(width/3 + r*cos(ang), height/2 + r*sin(ang), 55));
   }
   add_information();
@@ -110,6 +110,13 @@ function add_information(){
                   'Korasaju\'s Algorithm finds the Strongly ' +
                   'Connected Components (SCC) of an undirected graph.',
                   'korasaju/index.html');
+
+  boxes[6].txt = ['A*', 'Search'];
+  boxes[6].add_txt(width*0.75, height*0.5,
+                  'A* is a graph traversal and path search informed algorithm. ' +
+                  'In every step A* selects the path that minimizes a function ' +
+                  'that works with a heuristic. ',
+                  'astar/index.html');
 
 }
 
