@@ -70,7 +70,7 @@ function add_information(){
                    'The Depth first search (DFS) is a Graph Traversal Algorithm. ' +
                    'It\'s aim is to traverse the graph in ' +
                    'such a way that it tries to go far from the root node.' ,
-                   'dfs/index.html');
+                   'dfs.html');
 
 
   boxes[1].txt = ['BFS'];
@@ -78,7 +78,7 @@ function add_information(){
                    'The Breadth first search (BFS) is a Graph ' +
                    'Traversal Algorithm. It\'s aim is to traverse ' +
                    'the graph as close as possible to the root node.',
-                   'bfs/index.html');
+                   'bfs.html');
 
 
   boxes[2].txt = ['Dijkstra'];
@@ -88,7 +88,7 @@ function add_information(){
                    'For a given source node in the graph, the ' +
                    'algorithm finds the shortest path ' +
                    'between that node and every other.',
-                   'dijkstra/index.html');
+                   'dijkstra.html');
 
 
   boxes[3].txt = ['Kruskal'];
@@ -96,27 +96,27 @@ function add_information(){
                    'Kruskal\s algorithm is a minimum-spanning-tree greedy '+
                    'algorithm which finds an edge of the least possible ' +
                    'weight that connects any two trees in the forest.',
-                   'kruskal/index.html');
+                   'kruskal.html');
 
   boxes[4].txt = ['Bellman', 'Ford'];
   boxes[4].add_txt(width*0.75, height*0.5,
                   'Bellman-Ford algorithm allows you to check whether ' +
                   'there exists a cycle of negative weight in the ' +
                   'graph, and if it does, find one of these cycles.',
-                  'bford/index.html');
+                  'bford.html');
 
   boxes[5].txt = ['Korasaju'];
   boxes[5].add_txt(width*0.75, height*0.5,
                   'Korasaju\'s Algorithm finds the Strongly ' +
                   'Connected Components (SCC) of an undirected graph.',
-                  'korasaju/index.html');
+                  'korasaju.html');
 
   boxes[6].txt = ['A*', 'Search'];
   boxes[6].add_txt(width*0.75, height*0.5,
                   'A* is a graph traversal and path search informed algorithm. ' +
                   'In every step A* selects the path that minimizes a function ' +
                   'that works with a heuristic. ',
-                  'astar/index.html');
+                  'astar.html');
 
 }
 
