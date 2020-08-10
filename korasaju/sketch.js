@@ -2,13 +2,16 @@ var korasaju;
 var ops = [];
 var slider;
 
+function preload(){
+  create_interaction();
+}
+
 function setup() {
 
   var frame_rate = 2;
   korasaju = new Korasaju(0, 30, 0, 0, frame_rate);
 
   textFont('Oswald', 20);
-  create_interaction();
   slider = createSlider(1 , 40 , frame_rate);
 
   createCanvas(windowWidth,windowHeight);

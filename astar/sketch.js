@@ -3,22 +3,12 @@ var ops = [];
 var w_screen;
 var h_screen;
 
+function preload(){
+  create_interaction();
+}
+
+
 function setup() {
-
-  ops.push(new Option(['change start'], 2));
-  ops[0].button.mousePressed(change_start);
-
-  ops.push(new Option(['change end'], 2));
-  ops[1].button.mousePressed(change_end);
-
-  ops.push(new Option(['run a*'], 0));
-  ops[2].button.mousePressed(start_animation);
-
-  ops.push(new Option(['change heuristic', 'change heuristic'], 0));
-  ops[3].button.mousePressed(change_distance);
-
-  ops.push(new Option(['restart'], 0));
-  ops[4].button.mousePressed(init);
 
   createCanvas(windowWidth,windowHeight);
   textFont('Montserrat', 20);
@@ -80,4 +70,22 @@ function start_animation(){
 
 function mouseClicked(){
   astar.change_obstacle(mouseY, mouseX);
+}
+
+
+function create_interaction(){
+  ops.push(new Option(['change start'], 2));
+  ops[0].button.mousePressed(change_start);
+
+  ops.push(new Option(['change end'], 2));
+  ops[1].button.mousePressed(change_end);
+
+  ops.push(new Option(['run a*'], 0));
+  ops[2].button.mousePressed(start_animation);
+
+  ops.push(new Option(['change heuristic', 'change heuristic'], 0));
+  ops[3].button.mousePressed(change_distance);
+
+  ops.push(new Option(['restart'], 0));
+  ops[4].button.mousePressed(init);
 }

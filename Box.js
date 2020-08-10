@@ -41,7 +41,7 @@ function Box(x, y, r){
       fill('#2e4057');
     }
     strokeWeight(1.3);
-    textSize(20);
+    textSize(18);
 
     var h = 10 - (this.txt.length - 1)* 10;
     for(i = 0; i < this.txt.length; ++i){

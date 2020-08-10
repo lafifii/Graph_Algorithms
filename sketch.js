@@ -1,5 +1,5 @@
 var boxes = [];
-var r = 190;
+var r = 150;
 var info = [];
 
 function setup() {
@@ -9,7 +9,7 @@ function setup() {
 
   for(var i = 0; i < 7; i++){
     var ang = 2 * PI * i / 7;
-    boxes.push(new Box(width/3 + r*cos(ang), height/2 + r*sin(ang), 55));
+    boxes.push(new Box(width/3 + r*cos(ang), height/2 + r*sin(ang), 45));
   }
   add_information();
 
@@ -54,7 +54,7 @@ function draw_title(){
   text("@lafifii", 5, 20);
 }
 
-function  mousePressed(){
+function  mouseReleased(){
   for(var i = 0; i < boxes.length; ++i)
     if(boxes[i].clicked()) return;
 }
