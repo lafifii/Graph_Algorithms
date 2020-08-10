@@ -1,18 +1,31 @@
-var boxes = [];
+var boxes;
 var r = 150;
 var info = [];
 
-function setup() {
-  createCanvas(windowWidth,windowHeight);
+var w = window.innerWidth; 
+var h = window.innerHeight;
 
-  textFont('Montserrat', 25);
+window.onresize = function() {
 
+  w = window.innerWidth;
+  h = window.innerHeight;
+  resizeCanvas(w, h);
+  create_boxes();
+}
+
+function create_boxes(){
+  boxes = new Array(7);
   for(var i = 0; i < 7; i++){
     var ang = 2 * PI * i / 7;
-    boxes.push(new Box(width/3 + r*cos(ang), height/2 + r*sin(ang), 45));
+    boxes[i] = new Box(w/3 + r*cos(ang), h/2 + r*sin(ang), 45);
   }
   add_information();
+}
 
+function setup() {
+  createCanvas(w, h);
+  textFont('Montserrat', 25);
+  create_boxes();
 }
 
 function draw() {
@@ -28,7 +41,7 @@ function draw() {
   }
   if(ok) cursor(HAND);
   else{
-    show_info(info, 15, width*0.75, height*0.5);
+    show_info(info, 15, w*0.75, h*0.5);
     cursor(ARROW);
   }
 
@@ -48,8 +61,8 @@ function draw_title(){
   stroke(0);
   fill(0);
   textSize(25);
-  text("Graph", width/3 - textWidth('Graph')/2, height/2);
-  text("Algorithms", width/3 - textWidth('Algorithms')/2, height/2 + 20);
+  text("Graph", w/3 - textWidth('Graph')/2, h/2);
+  text("Algorithms", w/3 - textWidth('Algorithms')/2, h/2 + 20);
   textSize(15);
   text("@lafifii", 5, 20);
 }
@@ -66,7 +79,7 @@ function add_information(){
                     'in the left to try. For a better experience check this in a computer!');
 
   boxes[0].txt = ['DFS'];
-  boxes[0].add_txt(width*0.75, height*0.5,
+  boxes[0].add_txt(w*0.75, h*0.5,
                    'The Depth first search (DFS) is a Graph Traversal Algorithm. ' +
                    'It\'s aim is to traverse the graph in ' +
                    'such a way that it tries to go far from the root node.' ,
@@ -74,7 +87,7 @@ function add_information(){
 
 
   boxes[1].txt = ['BFS'];
-  boxes[1].add_txt(width*0.75, height*0.5,
+  boxes[1].add_txt(w*0.75, h*0.5,
                    'The Breadth first search (BFS) is a Graph ' +
                    'Traversal Algorithm. It\'s aim is to traverse ' +
                    'the graph as close as possible to the root node.',
@@ -82,7 +95,7 @@ function add_information(){
 
 
   boxes[2].txt = ['Dijkstra'];
-  boxes[2].add_txt(width*0.75, height*0.5,
+  boxes[2].add_txt(w*0.75, h*0.5,
                    'Dijkstra\'s algorithm is an algorithm for finding' +
                    ' the shortest paths between nodes in a graph. ' +
                    'For a given source node in the graph, the ' +
@@ -92,27 +105,27 @@ function add_information(){
 
 
   boxes[3].txt = ['Kruskal'];
-  boxes[3].add_txt(width*0.75, height*0.5,
+  boxes[3].add_txt(w*0.75, h*0.5,
                    'Kruskal\s algorithm is a minimum-spanning-tree greedy '+
                    'algorithm which finds an edge of the least possible ' +
                    'weight that connects any two trees in the forest.',
                    'kruskal.html');
 
   boxes[4].txt = ['Bellman', 'Ford'];
-  boxes[4].add_txt(width*0.75, height*0.5,
+  boxes[4].add_txt(w*0.75, h*0.5,
                   'Bellman-Ford algorithm allows you to check whether ' +
                   'there exists a cycle of negative weight in the ' +
                   'graph, and if it does, find one of these cycles.',
                   'bford.html');
 
   boxes[5].txt = ['Korasaju'];
-  boxes[5].add_txt(width*0.75, height*0.5,
+  boxes[5].add_txt(w*0.75, h*0.5,
                   'Korasaju\'s Algorithm finds the Strongly ' +
                   'Connected Components (SCC) of an undirected graph.',
                   'korasaju.html');
 
   boxes[6].txt = ['A*', 'Search'];
-  boxes[6].add_txt(width*0.75, height*0.5,
+  boxes[6].add_txt(w*0.75, h*0.5,
                   'A* is a graph traversal and path search informed algorithm. ' +
                   'In every step A* selects the path that minimizes a function ' +
                   'that works with a heuristic. ',

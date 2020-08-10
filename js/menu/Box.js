@@ -68,6 +68,7 @@ function Box(x, y, r){
   }
 
   this.update = function(){
+
     var d = dist(mouseX, mouseY, this.x, this.y);
     this.on = d <= this.r;
   }
@@ -86,5 +87,11 @@ function Box(x, y, r){
       window.open(this.dir);
     }
     return this.on;
+  }
+
+  this.resize = function(x, y){
+    this.x = x;
+    this.y = y;
+    this.lines = [];
   }
 }

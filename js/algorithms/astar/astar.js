@@ -202,8 +202,8 @@ function AStar(rows, columns, width_, height_, frame_rate){
   }
 
   this.change_start = function(y, x){
-    if(this.obstacles > 0 | this.animation) return;
-    if(x >= this.columns || y >= this.rows) return;
+    if(this.obstacles > 0 || this.animation) return;
+    if(x < 0 || y < 0 || x >= this.columns || y >= this.rows) return;
     if(this.matrix[y][x] == 3) return;
 
     this.matrix[this.start[0]][this.start[1]] = 0;
@@ -212,13 +212,29 @@ function AStar(rows, columns, width_, height_, frame_rate){
   }
 
   this.change_end = function(y, x){
-    if(this.obstacles > 0 | this.animation) return;
-    if(x >= this.columns || y >= this.rows) return;
+    if(this.obstacles > 0 || this.animation) return;
+    if(x < 0 || y < 0 || x >= this.columns || y >= this.rows) return;
     if(this.matrix[y][x] == 2) return;
 
     this.matrix[this.end[0]][this.end[1]] = 0;
     this.end = [y, x];
     this.matrix[this.end[0]][this.end[1]] = 3;
+  }
+
+  this.change_dimensions = function(rows, columns){
+
+    var ok = 0;
+    if(rows > 1){
+      this.rows = rows;
+      ok = 1;
+    }
+
+    if(columns > 1){
+      this.columns = columns;
+      ok = 1;
+    }
+
+    if(ok) this.init();
   }
 
   this.get_pos = function(y, x){
