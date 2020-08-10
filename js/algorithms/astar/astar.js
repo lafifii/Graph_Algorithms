@@ -2,7 +2,7 @@
 var colors = ['#8d96a3', '#2e4060', '#66a182', '#d1495b', '#edae49', '#00798c', '#d1495b'];
 var inf = 10000000000000;
 
-function AStar(rows, columns, width_, height_){
+function AStar(rows, columns, width_, height_, frame_rate){
 
   this.create_matrix = function(){
     var mx = new Array(this.rows);
@@ -52,6 +52,7 @@ function AStar(rows, columns, width_, height_){
   this.iterations = Math.round(random(1, 10));
   this.y = Math.floor(random(0, this.rows));
   this.x = Math.floor(random(0, this.columns));
+  this.frame_rate = frame_rate;
 
   [this.matrix, this.vis , this.f_score, this.g_score, this.parent] = this.create_matrix();
 
@@ -81,17 +82,17 @@ function AStar(rows, columns, width_, height_){
   this.show = function(){
 
     if(this.obstacles > 0){
+      frameRate(60);
       this.change_matrix();
     }
 
     if(this.animation){
+      frameRate(this.frame_rate);
       this.astar();
     }
 
     var w = this.width_/this.columns;
     var h = this.height_/this.rows;
-
-    if(this.animation) this.astar();
 
     for(var i = 0; i < this.rows; ++i){
       for(var j = 0; j < this.columns; ++j){

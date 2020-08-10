@@ -1,19 +1,9 @@
 var bford;
-var ops = [];
-var slider;
-
-function preload(){
-  create_interaction();
-}
 
 function setup() {
 
-  var frame_rate = 2;
-  bford = new BellmanFord(0, 30, -100000, 30, frame_rate);
-
+  bford = new BellmanFord(0, 30, -100000, 30, slider.value());
   textFont('Oswald', 20);
-  slider = createSlider(1 , 40 , frame_rate);
-
   createCanvas(windowWidth,windowHeight);
 }
 

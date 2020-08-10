@@ -1,35 +1,33 @@
 var astar ;
-var ops = [];
 var w_screen;
 var h_screen;
 
-function preload(){
-  create_interaction();
-}
-
-
 function setup() {
-
   createCanvas(windowWidth,windowHeight);
   textFont('Montserrat', 20);
+  w_screen = width/2;
+  h_screen = w_screen*0.8;
 
-  w_screen = width/2, h_screen = max(height - 80, 80);
-  astar = new AStar(parseInt(w_screen/18), parseInt(h_screen/18), w_screen, h_screen);
+  var rows = parseInt(w_screen/18);
+  var cols = parseInt(h_screen/18);
+  astar = new AStar(rows, cols, w_screen, h_screen, slider.value());
 }
 
 function draw() {
   background('#8d96a3');
+
+  astar.frame_rate = slider.value()*3;
   astar.show();
 
   textSize(30);
   fill(0);
   stroke(0);
-  text("A* Search", width*0.75 - textWidth('A* Search')/2, height/2 - 25);
-  text("Algorithm", width*0.75 - textWidth('Algorithm')/2, height/2);
+  text("A* Search", width*0.75 - textWidth('A* Search')/2, h_screen/2 - 25);
+  text("Algorithm", width*0.75 - textWidth('Algorithm')/2, h_screen/2);
 
   textSize(20);
   var txt = astar.option_h ? "Manhattan Distance" : "Euclidean Distance";
-  text(txt, width*0.75 - textWidth(txt)/2, height/2 + 25);
+  text(txt, width*0.75 - textWidth(txt)/2, h_screen/2 + 25);
 
 
   if(mouseX <= w_screen && mouseY <= h_screen) cursor(HAND);

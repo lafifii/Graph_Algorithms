@@ -1,17 +1,9 @@
 var dijkstra;
-var ops = [];
-var slider ;
 
-function preload(){
-  create_interaction();
-}
 
 function setup() {
-
-  var frame_rate = 2;
-  dijkstra = new Dijkstra(0, 30, 0, 30, frame_rate);
+  dijkstra = new Dijkstra(0, 30, 0, 30, slider.value());
   textFont('Oswald', 20);
-  slider = createSlider(1 , 40 , frame_rate);
   createCanvas(windowWidth,windowHeight);
 }
 

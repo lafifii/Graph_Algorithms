@@ -1,20 +1,11 @@
 var dfs;
-var ops = [];
-var slider;
-
-function preload(){
-  create_interaction();
-}
 
 function setup() {
 
-  var frame_rate = 2;
-  dfs = new DFS(0, 30, 0, 0, frame_rate);
-
+  dfs = new DFS(0, 30, 0, 0, slider.value());
   textFont('Oswald', 20);
-  slider = createSlider(1 , 40 , frame_rate);
-
   createCanvas(windowWidth,windowHeight);
+
 }
 
 function draw() {

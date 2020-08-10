@@ -1,17 +1,8 @@
 var kruskal;
-var ops = [];
-var slider;
-
-function preload(){
-  create_interaction();
-}
 
 function setup() {
-
-  var frame_rate = 2;
-  kruskal = new Kruskal(0, 30, -1000000, 30, frame_rate);
+  kruskal = new Kruskal(0, 30, -1000000, 30, slider.value());
   textFont('Oswald', 20);
-  slider = createSlider(1 , 40 , frame_rate);
   createCanvas(windowWidth,windowHeight);
 }
 
