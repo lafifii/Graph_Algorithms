@@ -94,7 +94,7 @@ function change_dimensions(){
 
 function create_interaction(){
 
-  ops.push(new Option(['change dim ( rxc )'], 2));
+  ops.push(new Option(['change dimensions ( rxc )'], 2));
   ops[0].button.mousePressed(change_dimensions);
 
   ops.push(new Option(['change start'], 2));
