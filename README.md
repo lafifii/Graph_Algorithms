@@ -19,4 +19,4 @@ Variables:
 - ***m*** : number of edges in the graph
 - **b** : the branching factor (the average number of successors per state).
 
-For more information about these algorithms you can go [here](https://cp-algorithms.com/)
+For more information about these algorithms you can go [here](https://cp-algorithms.com/) !
